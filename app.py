@@ -21,8 +21,8 @@ This app lets you **predict churn** in a Telco Company using logistic regression
 # ====================
 # Config
 # ====================
-DEFAULT_MODEL_PATH = "/Users/feliciaangjaya/churn-app/logreg_top10_tuned.pkl"
-DEFAULT_INFO_PATH  = "/Users/feliciaangjaya/churn-app/logreg_top10_tuned_info.json"
+DEFAULT_MODEL_PATH = "logreg_top10_tuned.pkl"
+DEFAULT_INFO_PATH  = "logreg_top10_tuned_info.json"
 THRESHOLD = 0.50  # fixed (no UI)
 
 # Ranges for manual inputs
