@@ -24,15 +24,40 @@ This app lets you **predict churn** in a Telco Company using logistic regression
 # Config
 # ====================
 # Show env (to verify runtime takes effect)
+# --- MUST be at the very top (before joblib.load) ---
+
+import os, sys
+from pathlib import Path
+import streamlit as st
+
+# Tampilkan versi env biar keliatan runtime-nya kepake
 try:
     import sklearn
     st.caption(f"Env: Python {sys.version.split()[0]} • scikit-learn {sklearn.__version__}")
 except Exception:
     pass
 
+# Compat patch: sediakan class privat yang dicari pickle lama/baru
+try:
+    from sklearn.compose import _column_transformer as _ct
+    if not hasattr(_ct, "_RemainderColsList"):
+        class _RemainderColsList(list): ...
+        _ct._RemainderColsList = _RemainderColsList
+        st.caption("Patched: _RemainderColsList injected")
+except Exception as e:
+    st.warning(f"Compat patch skipped: {e}")
+
+# joblib (fallback ke pickle kalau joblib tidak ada)
+try:
+    import joblib
+except Exception:
+    import pickle as joblib
+
+# PATH model: RELATIF (repo flat)
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_MODEL_PATH = os.getenv("MODEL_PATH", str(BASE_DIR / "logreg_top10_tuned.pkl"))
 DEFAULT_INFO_PATH  = os.getenv("INFO_PATH",  str(BASE_DIR / "logreg_top10_tuned_info.json"))
+
 
 THRESHOLD = 0.50  # fixed (no UI)
 
