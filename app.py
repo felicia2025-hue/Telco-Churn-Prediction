@@ -23,8 +23,17 @@ This app lets you **predict churn** in a Telco Company using logistic regression
 # ====================
 # Config
 # ====================
-DEFAULT_MODEL_PATH = "logreg_top10_tuned.pkl"
-DEFAULT_INFO_PATH  = "logreg_top10_tuned_info.json"
+# Show env (to verify runtime takes effect)
+try:
+    import sklearn
+    st.caption(f"Env: Python {sys.version.split()[0]} • scikit-learn {sklearn.__version__}")
+except Exception:
+    pass
+
+BASE_DIR = Path(__file__).resolve().parent
+DEFAULT_MODEL_PATH = os.getenv("MODEL_PATH", str(BASE_DIR / "logreg_top10_tuned.pkl"))
+DEFAULT_INFO_PATH  = os.getenv("INFO_PATH",  str(BASE_DIR / "logreg_top10_tuned_info.json"))
+
 THRESHOLD = 0.50  # fixed (no UI)
 
 # Ranges for manual inputs
