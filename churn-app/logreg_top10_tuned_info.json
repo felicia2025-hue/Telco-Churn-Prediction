@@ -1,0 +1,34 @@
+{
+  "selected_vars": [
+    "city",
+    "satisfaction_score",
+    "online_security",
+    "dependents",
+    "number_of_referrals",
+    "offer",
+    "contract",
+    "senior_citizen",
+    "referred_a_friend",
+    "monthly_ charges"
+  ],
+  "num_sel": [
+    "satisfaction_score",
+    "number_of_referrals",
+    "monthly_ charges"
+  ],
+  "cat_sel": [
+    "city",
+    "online_security",
+    "dependents",
+    "offer",
+    "contract",
+    "senior_citizen",
+    "referred_a_friend"
+  ],
+  "best_params": {
+    "model__C": 0.1,
+    "model__penalty": "l1"
+  },
+  "best_cv_roc_auc": 0.9926512465607699,
+  "sklearn_version": "1.6.1"
+}
