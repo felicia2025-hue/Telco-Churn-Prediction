@@ -1,6 +1,3 @@
-# app.py — scoring only (no training)
-# Run: streamlit run app.py
-
 import os, re, io, json
 import numpy as np
 import pandas as pd
