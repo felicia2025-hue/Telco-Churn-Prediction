@@ -30,23 +30,6 @@ import os, sys
 from pathlib import Path
 import streamlit as st
 
-# Tampilkan versi env biar keliatan runtime-nya kepake
-try:
-    import sklearn
-    st.caption(f"Env: Python {sys.version.split()[0]} • scikit-learn {sklearn.__version__}")
-except Exception:
-    pass
-
-# Compat patch: sediakan class privat yang dicari pickle lama/baru
-try:
-    from sklearn.compose import _column_transformer as _ct
-    if not hasattr(_ct, "_RemainderColsList"):
-        class _RemainderColsList(list): ...
-        _ct._RemainderColsList = _RemainderColsList
-        st.caption("Patched: _RemainderColsList injected")
-except Exception as e:
-    st.warning(f"Compat patch skipped: {e}")
-
 # joblib (fallback ke pickle kalau joblib tidak ada)
 try:
     import joblib
